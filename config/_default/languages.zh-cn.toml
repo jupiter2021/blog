@@ -1,0 +1,21 @@
+disabled = false
+languageCode = "zh-CN"
+languageName = "简体中文"
+weight = 1
+title = "Korben's Blog"
+
+[params]
+  displayName = "ZH"
+  isoCode = "zh-CN"
+  rtl = false
+  dateFormat = "2006年1月2日"
+  description = "分享技术、生活与思考"
+
+[params.author]
+  name = "Korben"
+  image = "img/avatar.jpg"
+  headline = "分享技术、生活与思考"
+  bio = "热爱音乐、阅读和运动。信奉经验主义和实用主义。"
+  links = [
+    { github = "https://github.com/" },
+  ]

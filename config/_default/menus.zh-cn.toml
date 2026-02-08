@@ -1,0 +1,14 @@
+[[main]]
+  name = "首页"
+  pageRef = "/"
+  weight = 1
+
+[[main]]
+  name = "文章"
+  pageRef = "/posts/"
+  weight = 2
+
+[[main]]
+  name = "关于"
+  pageRef = "/about/"
+  weight = 3

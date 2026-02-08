@@ -1,0 +1,129 @@
+baseURL: https://eqigxue.top/
+languageCode: zh-cn
+title: Korben's Blog
+theme: blowfish
+defaultContentLanguage: zh-cn
+
+# 分页
+pagination:
+  pagerSize: 10
+
+# 启用表情符号
+enableEmoji: true
+
+# 永久链接
+permalinks:
+  posts: /posts/:slug/
+
+# 参数配置
+params:
+  # 站点信息
+  author:
+    name: 强哥
+    description: 分享技术、生活与思考
+    # avatar: /img/avatar.png  # 可选：添加头像图片
+
+  # 侧边栏
+  sidebar:
+    emoji: 👋
+    subtitle: 欢迎来到强哥的博客
+    
+  # 文章配置
+  article:
+    math: false
+    toc: true
+    readingTime: true
+    license:
+      enabled: false
+
+  # 小部件
+  widgets:
+    homepage:
+      - type: search
+      - type: archives
+        params:
+          limit: 5
+      - type: categories
+        params:
+          limit: 10
+      - type: tag-cloud
+        params:
+          limit: 10
+    page:
+      - type: toc
+
+  # 评论（暂时禁用，后续可开启）
+  comments:
+    enabled: false
+
+  # 颜色模式
+  colorScheme:
+    toggle: true
+    default: auto
+
+  # 图片处理
+  imageProcessing:
+    cover:
+      enabled: true
+    content:
+      enabled: true
+
+# 菜单
+menu:
+  main:
+    - name: 首页
+      url: /
+      weight: 1
+      params:
+        icon: home
+    - name: 归档
+      url: /archives/
+      weight: 2
+      params:
+        icon: archives
+    - name: 搜索
+      url: /search/
+      weight: 3
+      params:
+        icon: search
+    - name: 关于
+      url: /page/about/
+      weight: 4
+      params:
+        icon: user
+
+  social:
+    - name: GitHub
+      url: https://github.com/
+      params:
+        icon: brand-github
+
+# 输出格式（搜索需要 JSON）
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# 相关文章
+related:
+  includeNewer: true
+  threshold: 60
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 200
+
+# Markup 配置
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  tableOfContents:
+    endLevel: 4
+    ordered: true
+    startLevel: 2
+  highlight:
+    noClasses: false
