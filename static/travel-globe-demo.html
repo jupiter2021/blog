@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Log | 旅行足迹</title>
+    <script src="https://unpkg.com/globe.gl@2.27.0/dist/globe.gl.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .quote {
+            background: #fff8f0;
+            border-left: 4px solid #f5a623;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .info {
+            background: #fff8f0;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info::before {
+            content: "🌍";
+            font-size: 1.2rem;
+        }
+        
+        #globeViz {
+            width: 100%;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f5a623;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Travel Log | 旅行足迹</h1>
+        
+        <div class="quote">
+            "The wish to travel seems to me characteristically human," the famed explorer and writer Paul Theroux once said. "That desire to move, to satisfy your curiosity or ease your fears, to change the circumstances of your life, to be a stranger, to make a friend, to experience an exotic landscape, to risk the unknown."
+        </div>
+        
+        <div class="info">
+            This page shows my travel footprints. / 这是我的旅行足迹。
+        </div>
+        
+        <div id="globeViz"></div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="countryCount">0</div>
+                <div class="stat-label">国家/地区</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="cityCount">0</div>
+                <div class="stat-label">城市</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 旅行足迹数据
+        const travelData = [
+            // 中国
+            { name: '大连', lat: 38.914, lng: 121.6147, country: '中国' },
+            { name: '北京', lat: 39.9042, lng: 116.4074, country: '中国' },
+            { name: '上海', lat: 31.2304, lng: 121.4737, country: '中国' },
+            { name: '重庆', lat: 29.4316, lng: 106.9123, country: '中国' },
+            { name: '成都', lat: 30.5728, lng: 104.0668, country: '中国' },
+            { name: '西安', lat: 34.3416, lng: 108.9398, country: '中国' },
+            { name: '广州', lat: 23.1291, lng: 113.2644, country: '中国' },
+            { name: '深圳', lat: 22.5431, lng: 114.0579, country: '中国' },
+            { name: '杭州', lat: 30.2741, lng: 120.1551, country: '中国' },
+            { name: '南京', lat: 32.0603, lng: 118.7969, country: '中国' },
+            { name: '厦门', lat: 24.4798, lng: 118.0894, country: '中国' },
+            { name: '青岛', lat: 36.0671, lng: 120.3826, country: '中国' },
+            { name: '哈尔滨', lat: 45.8038, lng: 126.5350, country: '中国' },
+            { name: '三亚', lat: 18.2528, lng: 109.5119, country: '中国' },
+            { name: '丽江', lat: 26.8721, lng: 100.2299, country: '中国' },
+            
+            // 日本
+            { name: '东京', lat: 35.6762, lng: 139.6503, country: '日本' },
+            { name: '大阪', lat: 34.6937, lng: 135.5023, country: '日本' },
+            { name: '京都', lat: 35.0116, lng: 135.7681, country: '日本' },
+            { name: '箕面', lat: 34.8275, lng: 135.4707, country: '日本' },
+            
+            // 韩国
+            { name: '首尔', lat: 37.5665, lng: 126.9780, country: '韩国' },
+            
+            // 东南亚
+            { name: '新加坡', lat: 1.3521, lng: 103.8198, country: '新加坡' },
+            { name: '曼谷', lat: 13.7563, lng: 100.5018, country: '泰国' },
+            { name: '吉隆坡', lat: 3.1390, lng: 101.6869, country: '马来西亚' },
+            
+            // 澳洲
+            { name: '悉尼', lat: -33.8688, lng: 151.2093, country: '澳大利亚' },
+            
+            // 欧洲
+            { name: '巴黎', lat: 48.8566, lng: 2.3522, country: '法国' },
+            { name: '伦敦', lat: 51.5074, lng: -0.1278, country: '英国' },
+            
+            // 美国
+            { name: '西雅图', lat: 47.6062, lng: -122.3321, country: '美国' },
+            { name: '旧金山', lat: 37.7749, lng: -122.4194, country: '美国' },
+        ];
+
+        // 计算统计数据
+        const uniqueCountries = [...new Set(travelData.map(d => d.country))];
+        document.getElementById('countryCount').textContent = uniqueCountries.length;
+        document.getElementById('cityCount').textContent = travelData.length;
+
+        const container = document.getElementById('globeViz');
+        
+        // 创建地球
+        const globe = Globe()(container)
+            .globeImageUrl('//unpkg.com/three-globe/example/img/earth-day.jpg')
+            .backgroundColor('#ffffff')
+            .showAtmosphere(true)
+            .atmosphereColor('#b8d4e8')
+            .atmosphereAltitude(0.2)
+            .pointsData(travelData)
+            .pointLat('lat')
+            .pointLng('lng')
+            .pointColor(() => '#f5a623')
+            .pointAltitude(0.02)
+            .pointRadius(0.4)
+            .pointLabel(d => `
+                <div style="background: rgba(0,0,0,0.75); color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px;">
+                    <b>${d.name}</b><br/>
+                    <span style="color: #f5a623;">${d.country}</span>
+                </div>
+            `);
+
+        // 设置初始视角 - 聚焦亚洲
+        globe.pointOfView({ lat: 25, lng: 115, altitude: 2.2 });
+
+        // 自动旋转
+        globe.controls().autoRotate = true;
+        globe.controls().autoRotateSpeed = 0.5;
+        globe.controls().enableZoom = true;
+
+        // 响应式调整
+        function handleResize() {
+            globe.width(container.offsetWidth);
+            globe.height(container.offsetHeight);
+        }
+        window.addEventListener('resize', handleResize);
+        handleResize();
+    </script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+# 旅行足迹数据
+# 格式: name(城市名), lat(纬度), lng(经度), country(国家)
+# 获取经纬度: https://www.latlong.net/
+
+# ===== 中国 =====
+
+# 直辖市
+- name: "北京"
+  lat: 39.9042
+  lng: 116.4074
+  country: "中国"
+
+- name: "天津"
+  lat: 39.1235
+  lng: 117.1950
+  country: "中国"
+
+- name: "上海"
+  lat: 31.2304
+  lng: 121.4737
+  country: "中国"
+
+- name: "重庆"
+  lat: 29.4316
+  lng: 106.9123
+  country: "中国"
+
+# 内蒙古
+- name: "呼和浩特"
+  lat: 40.8422
+  lng: 111.7490
+  country: "中国"
+
+- name: "呼伦贝尔"
+  lat: 49.2122
+  lng: 119.7460
+  country: "中国"
+
+- name: "通辽"
+  lat: 43.6174
+  lng: 122.2630
+  country: "中国"
+
+- name: "乌兰浩特"
+  lat: 46.0727
+  lng: 122.0932
+  country: "中国"
+
+- name: "乌兰察布"
+  lat: 41.0223
+  lng: 113.1140
+  country: "中国"
+
+# 辽宁
+- name: "沈阳"
+  lat: 41.8057
+  lng: 123.4315
+  country: "中国"
+
+- name: "大连"
+  lat: 38.914
+  lng: 121.6147
+  country: "中国"
+
+- name: "丹东"
+  lat: 40.1290
+  lng: 124.3946
+  country: "中国"
+
+# 吉林
+- name: "长春"
+  lat: 43.8171
+  lng: 125.3235
+  country: "中国"
+
+- name: "通化"
+  lat: 41.7308
+  lng: 125.9400
+  country: "中国"
+
+- name: "长白山"
+  lat: 42.0353
+  lng: 128.0668
+  country: "中国"
+
+# 黑龙江
+- name: "哈尔滨"
+  lat: 45.8038
+  lng: 126.5350
+  country: "中国"
+
+# 江苏
+- name: "南京"
+  lat: 32.0603
+  lng: 118.7969
+  country: "中国"
+
+- name: "苏州"
+  lat: 31.2990
+  lng: 120.5853
+  country: "中国"
+
+- name: "无锡"
+  lat: 31.4912
+  lng: 120.3119
+  country: "中国"
+
+# 浙江
+- name: "杭州"
+  lat: 30.2741
+  lng: 120.1551
+  country: "中国"
+
+- name: "宁波"
+  lat: 29.8683
+  lng: 121.5440
+  country: "中国"
+
+- name: "绍兴"
+  lat: 30.0303
+  lng: 120.5801
+  country: "中国"
+
+# 安徽
+- name: "黄山"
+  lat: 29.7147
+  lng: 118.3376
+  country: "中国"
+
+- name: "歙县"
+  lat: 29.8612
+  lng: 118.4154
+  country: "中国"
+
+# 福建
+- name: "厦门"
+  lat: 24.4798
+  lng: 118.0894
+  country: "中国"
+
+# 江西
+- name: "三清山"
+  lat: 28.9156
+  lng: 118.0648
+  country: "中国"
+
+# 山东
+- name: "青岛"
+  lat: 36.0671
+  lng: 120.3826
+  country: "中国"
+
+- name: "泰安"
+  lat: 36.1999
+  lng: 117.0876
+  country: "中国"
+
+# 河南
+- name: "平顶山"
+  lat: 33.7662
+  lng: 113.1925
+  country: "中国"
+
+# 湖北
+- name: "恩施"
+  lat: 30.2721
+  lng: 109.4885
+  country: "中国"
+
+# 湖南
+- name: "长沙"
+  lat: 28.2282
+  lng: 112.9388
+  country: "中国"
+
+- name: "岳阳"
+  lat: 29.3572
+  lng: 113.1291
+  country: "中国"
+
+# 广东
+- name: "广州"
+  lat: 23.1291
+  lng: 113.2644
+  country: "中国"
+
+- name: "深圳"
+  lat: 22.5431
+  lng: 114.0579
+  country: "中国"
+
+# 广西
+- name: "南宁"
+  lat: 22.8170
+  lng: 108.3665
+  country: "中国"
+
+# 海南
+- name: "海口"
+  lat: 20.0440
+  lng: 110.1999
+  country: "中国"
+
+- name: "三亚"
+  lat: 18.2528
+  lng: 109.5119
+  country: "中国"
+
+- name: "万宁"
+  lat: 18.7962
+  lng: 110.3897
+  country: "中国"
+
+- name: "琼海"
+  lat: 19.2588
+  lng: 110.4748
+  country: "中国"
+
+# 四川
+- name: "成都"
+  lat: 30.5728
+  lng: 104.0668
+  country: "中国"
+
+- name: "四姑娘山"
+  lat: 31.0896
+  lng: 102.9020
+  country: "中国"
+
+# 贵州
+- name: "贵阳"
+  lat: 26.6470
+  lng: 106.6302
+  country: "中国"
+
+# 云南
+- name: "丽江"
+  lat: 26.8721
+  lng: 100.2299
+  country: "中国"
+
+- name: "虎跳峡"
+  lat: 27.1800
+  lng: 100.1100
+  country: "中国"
+
+- name: "雨崩"
+  lat: 28.4167
+  lng: 98.7667
+  country: "中国"
+
+# 陕西
+- name: "西安"
+  lat: 34.3416
+  lng: 108.9398
+  country: "中国"
+
+# 宁夏
+- name: "银川"
+  lat: 38.4872
+  lng: 106.2309
+  country: "中国"
+
+# 新疆
+- name: "乌鲁木齐"
+  lat: 43.8256
+  lng: 87.6168
+  country: "中国"
+
+- name: "吐鲁番"
+  lat: 42.9513
+  lng: 89.1895
+  country: "中国"
+
+- name: "天山"
+  lat: 43.0000
+  lng: 85.0000
+  country: "中国"
+
+# 香港
+- name: "香港"
+  lat: 22.3193
+  lng: 114.1694
+  country: "中国"
+
+# ===== 俄罗斯 =====
+- name: "莫斯科"
+  lat: 55.7558
+  lng: 37.6173
+  country: "俄罗斯"
+
+- name: "圣彼得堡"
+  lat: 59.9343
+  lng: 30.3351
+  country: "俄罗斯"
+
+- name: "摩尔曼斯克"
+  lat: 68.9585
+  lng: 33.0827
+  country: "俄罗斯"
+
+# ===== 日本 =====
+- name: "东京"
+  lat: 35.6762
+  lng: 139.6503
+  country: "日本"
+
+- name: "大阪"
+  lat: 34.6937
+  lng: 135.5023
+  country: "日本"
+
+- name: "富士山"
+  lat: 35.3606
+  lng: 138.7274
+  country: "日本"
+
+- name: "京都"
+  lat: 35.0116
+  lng: 135.7681
+  country: "日本"
+
+- name: "奈良"
+  lat: 34.6851
+  lng: 135.8048
+  country: "日本"
+
+- name: "神户"
+  lat: 34.6901
+  lng: 135.1956
+  country: "日本"
+
+# ===== 菲律宾 =====
+- name: "马尼拉"
+  lat: 14.5995
+  lng: 120.9842
+  country: "菲律宾"
+
+- name: "长滩岛"
+  lat: 11.9674
+  lng: 121.9248
+  country: "菲律宾"
+
+- name: "塔尔火山"
+  lat: 14.0113
+  lng: 120.9980
+  country: "菲律宾"
+
+# ===== 越南 =====
+- name: "河内"
+  lat: 21.0285
+  lng: 105.8542
+  country: "越南"
+
+- name: "下龙湾"
+  lat: 20.9101
+  lng: 107.1839
+  country: "越南"
+
+# ===== 泰国 =====
+- name: "曼谷"
+  lat: 13.7563
+  lng: 100.5018
+  country: "泰国"
+
+- name: "清迈"
+  lat: 18.7883
+  lng: 98.9853
+  country: "泰国"
+
+- name: "碧差汶"
+  lat: 16.4419
+  lng: 101.1591
+  country: "泰国"
+
+- name: "芭提雅"
+  lat: 12.9236
+  lng: 100.8825
+  country: "泰国"
+
+- name: "象岛"
+  lat: 12.0556
+  lng: 102.3369
+  country: "泰国"
+
+- name: "华欣"
+  lat: 12.5684
+  lng: 99.9577
+  country: "泰国"
+
+# ===== 印度尼西亚 =====
+- name: "雅加达"
+  lat: -6.2088
+  lng: 106.8456
+  country: "印度尼西亚"
+
+- name: "万隆"
+  lat: -6.9175
+  lng: 107.6191
+  country: "印度尼西亚"
+
+- name: "日惹"
+  lat: -7.7956
+  lng: 110.3695
+  country: "印度尼西亚"
+
+- name: "泗水"
+  lat: -7.2575
+  lng: 112.7521
+  country: "印度尼西亚"

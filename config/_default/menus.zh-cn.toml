@@ -9,6 +9,11 @@
   weight = 2
 
 [[main]]
+  name = "旅行"
+  pageRef = "/page/travel/"
+  weight = 3
+
+[[main]]
   name = "关于"
   pageRef = "/about/"
-  weight = 3
+  weight = 4

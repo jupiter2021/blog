@@ -1,0 +1,152 @@
+{{ define "main" }}
+<div class="travel-container">
+    <div class="travel-header">
+        <h1>Travel Log | 旅行足迹</h1>
+        
+        <blockquote class="travel-quote">
+            "The wish to travel seems to me characteristically human," the famed explorer and writer Paul Theroux once said. "That desire to move, to satisfy your curiosity or ease your fears, to change the circumstances of your life, to be a stranger, to make a friend, to experience an exotic landscape, to risk the unknown."
+        </blockquote>
+        
+        <div class="travel-info">
+            🌍 This page shows my travel footprints. / 这是我的旅行足迹。
+        </div>
+    </div>
+    
+    <div id="globeViz"></div>
+    
+    <div class="travel-stats">
+        <div class="stat-item">
+            <div class="stat-number" id="countryCount">0</div>
+            <div class="stat-label">国家/地区</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="cityCount">0</div>
+            <div class="stat-label">城市</div>
+        </div>
+    </div>
+</div>
+
+<style>
+.travel-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.travel-header h1 {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+}
+
+.travel-quote {
+    background: #fff8f0;
+    border-left: 4px solid #f5a623;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #666;
+    line-height: 1.8;
+}
+
+.travel-info {
+    background: #fff8f0;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 1rem;
+}
+
+#globeViz {
+    width: 100%;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.travel-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    padding: 20px;
+    background: var(--card-background, #f9f9f9);
+    border-radius: 10px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f5a623;
+}
+
+.stat-label {
+    color: var(--body-text-color, #666);
+    font-size: 0.9rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .travel-quote, .travel-info {
+        background: rgba(245, 166, 35, 0.1);
+    }
+}
+</style>
+
+<script src="https://unpkg.com/globe.gl@2.27.0/dist/globe.gl.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 从 Hugo data 文件加载旅行数据
+    const travelData = {{ .Site.Data.travel | jsonify | safeJS }};
+
+    const uniqueCountries = [...new Set(travelData.map(d => d.country))];
+    document.getElementById('countryCount').textContent = uniqueCountries.length;
+    document.getElementById('cityCount').textContent = travelData.length;
+
+    const container = document.getElementById('globeViz');
+    
+    const globe = Globe()(container)
+        .globeImageUrl('https://unpkg.com/three-globe@2.45.0/example/img/earth-blue-marble.jpg')
+        .backgroundColor('rgba(0,0,0,0)')
+        .showAtmosphere(true)
+        .atmosphereColor('#b8d4e8')
+        .atmosphereAltitude(0.2)
+        .pointsData(travelData)
+        .pointLat('lat')
+        .pointLng('lng')
+        .pointColor(() => '#f5a623')
+        .pointAltitude(0)
+        .pointRadius(0.35)
+        .pointLabel(d => `
+            <div style="background: rgba(0,0,0,0.75); color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px;">
+                <b>${d.name}</b><br/>
+                <span style="color: #f5a623;">${d.country}</span>
+            </div>
+        `);
+
+    globe.pointOfView({ lat: 25, lng: 115, altitude: 1.38 });
+    globe.controls().autoRotate = true;
+    globe.controls().autoRotateSpeed = 0.5;
+
+    // 鼠标悬停/拖动时停止旋转，离开后恢复
+    container.addEventListener('mouseenter', () => {
+        globe.controls().autoRotate = false;
+    });
+    container.addEventListener('mouseleave', () => {
+        globe.controls().autoRotate = true;
+    });
+
+    function handleResize() {
+        globe.width(container.offsetWidth);
+        globe.height(container.offsetHeight);
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+});
+</script>
+{{ end }}
