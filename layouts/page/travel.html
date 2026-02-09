@@ -133,6 +133,21 @@ document.addEventListener('DOMContentLoaded', function() {
     globe.controls().autoRotate = true;
     globe.controls().autoRotateSpeed = 0.5;
 
+    // 根据缩放级别动态调整点的大小（带最小值限制）
+    const baseRadius = 0.35;
+    const minRadius = 0.15;  // 最小点大小
+    const baseAltitude = 1.38;
+    
+    function updatePointSize() {
+        const currentAltitude = globe.pointOfView().altitude;
+        const scale = currentAltitude / baseAltitude;
+        const newRadius = Math.max(minRadius, baseRadius * scale);
+        globe.pointRadius(newRadius);
+    }
+    
+    // 监听缩放变化
+    globe.controls().addEventListener('change', updatePointSize);
+
     // 鼠标悬停/拖动时停止旋转，离开后恢复
     container.addEventListener('mouseenter', () => {
         globe.controls().autoRotate = false;
