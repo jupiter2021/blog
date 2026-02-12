@@ -4,6 +4,9 @@ title: Korben's Blog
 theme: blowfish
 defaultContentLanguage: zh-cn
 
+# 启用 CJK（中日韩）语言支持，修正字数统计和阅读时间
+hasCJKLanguage: true
+
 # 分页
 pagination:
   pagerSize: 10

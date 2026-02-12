@@ -1,0 +1,4 @@
+/* 导航栏站点标题字体调大 */
+.main-menu > a {
+  font-size: 1.25rem !important; /* 从 text-base (1rem) 调大到 text-xl (1.25rem) */
+}
