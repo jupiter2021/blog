@@ -24,6 +24,76 @@
             <div class="stat-label">城市</div>
         </div>
     </div>
+
+    <!-- 游记区域 -->
+    <div class="travel-journals">
+        <h2 class="journals-title">📖 游记</h2>
+        <p class="journals-subtitle">记录旅途中的所见所闻与感悟</p>
+
+        <!-- 徒步 -->
+        <div class="journal-section">
+            <h3 class="section-title"><span class="section-icon">🥾</span> 徒步</h3>
+            <div class="journal-grid">
+                {{ range where .Site.RegularPages "Params.tags" "intersect" (slice "徒步") }}
+                <a href="{{ .Permalink }}" class="journal-card">
+                    <div class="journal-card-image">
+                        {{ if .Params.image }}
+                        <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+                        {{ else }}
+                        <div class="journal-card-placeholder">🥾</div>
+                        {{ end }}
+                    </div>
+                    <div class="journal-card-content">
+                        <h4 class="journal-card-title">{{ .Title }}</h4>
+                        <div class="journal-card-meta">
+                            <span class="journal-card-date">{{ .Date.Format "2006-01-02" }}</span>
+                            {{ if .Params.tags }}
+                            <div class="journal-card-tags">
+                                {{ range first 3 .Params.tags }}
+                                <span class="journal-tag">{{ . }}</span>
+                                {{ end }}
+                            </div>
+                            {{ end }}
+                        </div>
+                        <p class="journal-card-summary">{{ .Summary | plainify | truncate 80 }}</p>
+                    </div>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- 观光 -->
+        <div class="journal-section">
+            <h3 class="section-title"><span class="section-icon">🏛️</span> 观光</h3>
+            <div class="journal-grid">
+                {{ range where .Site.RegularPages "Params.tags" "intersect" (slice "观光") }}
+                <a href="{{ .Permalink }}" class="journal-card">
+                    <div class="journal-card-image">
+                        {{ if .Params.image }}
+                        <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+                        {{ else }}
+                        <div class="journal-card-placeholder">🏛️</div>
+                        {{ end }}
+                    </div>
+                    <div class="journal-card-content">
+                        <h4 class="journal-card-title">{{ .Title }}</h4>
+                        <div class="journal-card-meta">
+                            <span class="journal-card-date">{{ .Date.Format "2006-01-02" }}</span>
+                            {{ if .Params.tags }}
+                            <div class="journal-card-tags">
+                                {{ range first 3 .Params.tags }}
+                                <span class="journal-tag">{{ . }}</span>
+                                {{ end }}
+                            </div>
+                            {{ end }}
+                        </div>
+                        <p class="journal-card-summary">{{ .Summary | plainify | truncate 80 }}</p>
+                    </div>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
@@ -94,6 +164,140 @@
 @media (prefers-color-scheme: dark) {
     .travel-quote, .travel-info {
         background: rgba(245, 166, 35, 0.1);
+    }
+}
+
+/* 游记区域 */
+.travel-journals {
+    margin-top: 50px;
+}
+
+.journals-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.journals-subtitle {
+    color: var(--body-text-color, #888);
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+.journal-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f5a623;
+    display: inline-block;
+}
+
+.section-icon {
+    margin-right: 6px;
+}
+
+.journal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.journal-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card-background, #fff);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.journal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.journal-card-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.journal-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.journal-card:hover .journal-card-image img {
+    transform: scale(1.05);
+}
+
+.journal-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background: linear-gradient(135deg, #fff8f0, #ffe8cc);
+}
+
+.journal-card-content {
+    padding: 16px;
+}
+
+.journal-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.journal-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.journal-card-date {
+    font-size: 0.8rem;
+    color: var(--body-text-color, #999);
+}
+
+.journal-card-tags {
+    display: flex;
+    gap: 4px;
+}
+
+.journal-tag {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: rgba(245, 166, 35, 0.15);
+    color: #e6951c;
+}
+
+.journal-card-summary {
+    font-size: 0.88rem;
+    color: var(--body-text-color, #666);
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .journal-grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>

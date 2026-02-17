@@ -8,7 +8,7 @@ categories:
 tags:
   - 重庆
   - Citywalk
-  - 徒步
+  - 观光
 image: https://pic.imgdb.cn/item/663634800ea9cb1403492c87.jpg
 ---
 

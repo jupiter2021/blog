@@ -8,7 +8,7 @@ categories:
 tags:
   - 日本
   - 大阪
-  - 徒步
+  - 观光
 image: https://pic1.imgdb.cn/item/67d98f0e88c538a9b5c05137.jpg
 ---
 
