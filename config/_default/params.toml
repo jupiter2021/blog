@@ -6,6 +6,7 @@ autoSwitchAppearance = true
 
 enableSearch = true
 enableCodeCopy = true
+hotlinkFeatureImage = true
 
 [header]
   layout = "fixed"

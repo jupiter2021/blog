@@ -8,10 +8,10 @@ categories:
 tags:
   - 生活
   - 思考
-image: https://pic.imgdb.cn/item/66c0bd04d9c307b7e98db70c.jpg
+image: https://assets.eqigxue.top/uploads/2024/08/midnight-emergency-room/cover.jpg
 ---
 
-![](https://pic.imgdb.cn/item/66c0bd04d9c307b7e98db70c.jpg)
+![](https://assets.eqigxue.top/uploads/2024/08/midnight-emergency-room/cover.jpg)
 
 最近，有一天深夜我去了医院的急诊室。在昏暗而忙碌的急诊大厅里，我见到了很多老人。他们大多处于生命的末期，医院的床位不足使他们只能躺在急诊室。深夜各种生命检测仪的声音以及一声声痛苦的呻吟充斥着整个空间，家属们无奈地陪在他们身边。
 
@@ -21,7 +21,7 @@ image: https://pic.imgdb.cn/item/66c0bd04d9c307b7e98db70c.jpg
 
 我开始思考自己的人生追求、成就以及人际关系。已经30多岁的我，面临着来自职业和生活上的种种压力，渐渐意识到对金钱和成就的追求是否真的有意义？是否我们可以不用那么辛苦地工作，仍然能幸福而满足地生活？
 
-![](https://pic.imgdb.cn/item/66c0be72d9c307b7e99178b9.jpg)
+![](https://assets.eqigxue.top/uploads/2024/08/midnight-emergency-room/walden.jpg)
 
 最近，我在读梭罗的《瓦尔登湖》，在书中，梭罗通过自己的实践证明，人只需要有限的物质就可以生活得非常满足。在瓦尔登湖畔，梭罗过着自给自足的简单生活，他的日子没有繁杂的物欲和社会压力，却充满了宁静与内心的富足。
 

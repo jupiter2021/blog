@@ -1,0 +1,15 @@
+{{- $cdn := site.Params.assetsCDN | default "" -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $width := .Get "width" | default "100%" -}}
+{{- $imgSrc := $src -}}
+{{- if and $cdn (not (hasPrefix $src "http")) -}}
+  {{- $imgSrc = printf "%s%s" $cdn $src -}}
+{{- end -}}
+<figure>
+  <img src="{{ $imgSrc }}" alt="{{ $alt }}" loading="lazy" style="max-width: {{ $width }}; border-radius: 8px;">
+  {{- if $caption }}
+  <figcaption style="text-align: center; color: #888; font-size: 0.9em; margin-top: 0.5em;">{{ $caption }}</figcaption>
+  {{- end }}
+</figure>

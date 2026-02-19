@@ -1,0 +1,58 @@
+<script>
+// TOC Scroll Spy
+(function () {
+  const tocLinks = document.querySelectorAll('.toc-right nav#TableOfContents a');
+  if (!tocLinks.length) return;
+
+  const headings = [];
+  tocLinks.forEach(link => {
+    const id = decodeURIComponent(link.getAttribute('href').slice(1));
+    const el = document.getElementById(id);
+    if (el) headings.push({ el, link });
+  });
+
+  if (!headings.length) return;
+
+  let activeLink = null;
+  const OFFSET = 160; // account for fixed header
+
+  function updateActive() {
+    let current = null;
+    for (let i = headings.length - 1; i >= 0; i--) {
+      const rect = headings[i].el.getBoundingClientRect();
+      if (rect.top <= OFFSET) {
+        current = headings[i];
+        break;
+      }
+    }
+    // If scrolled to top, nothing active
+    if (!current && window.scrollY < 100) {
+      if (activeLink) {
+        activeLink.classList.remove('toc-active');
+        activeLink = null;
+      }
+      return;
+    }
+    // Default to first heading if scrolled past top
+    if (!current) current = headings[0];
+
+    if (activeLink === current.link) return;
+    if (activeLink) activeLink.classList.remove('toc-active');
+    current.link.classList.add('toc-active');
+    activeLink = current.link;
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        updateActive();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateActive();
+})();
+</script>

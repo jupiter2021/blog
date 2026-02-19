@@ -1,0 +1,23 @@
+{{- $cdn := site.Params.assetsCDN | default "" -}}
+{{- $src := .Get "src" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $width := .Get "width" | default "100%" -}}
+{{- $autoplay := .Get "autoplay" | default "false" -}}
+{{- $loop := .Get "loop" | default "false" -}}
+{{- $muted := .Get "muted" | default "false" -}}
+{{- $videoSrc := $src -}}
+{{- if and $cdn (not (hasPrefix $src "http")) -}}
+  {{- $videoSrc = printf "%s%s" $cdn $src -}}
+{{- end -}}
+
+<figure>
+  <video src="{{ $videoSrc }}" controls playsinline
+    {{ if eq $autoplay "true" }}autoplay{{ end }}
+    {{ if eq $loop "true" }}loop{{ end }}
+    {{ if eq $muted "true" }}muted{{ end }}
+    style="width: {{ $width }}; border-radius: 8px;">
+  </video>
+  {{- if $caption }}
+  <figcaption style="text-align: center; color: #888; font-size: 0.9em; margin-top: 0.5em;">{{ $caption }}</figcaption>
+  {{- end }}
+</figure>

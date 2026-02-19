@@ -1,4 +1,201 @@
 /* 导航栏站点标题字体调大 */
 .main-menu > a {
-  font-size: 1.25rem !important; /* 从 text-base (1rem) 调大到 text-xl (1.25rem) */
+  font-size: 1.25rem !important;
+}
+
+/* ===== TOC 美化 ===== */
+
+/* 装饰背景 - 放在 details 内部，用伪元素实现 */
+.toc details.toc-right {
+  isolation: isolate;
+}
+
+/* 外层容器 - 毛玻璃（彩色底层 + 半透明面板） */
+.toc details.toc-right {
+  position: relative;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.65) 0%,
+      rgba(245, 248, 255, 0.55) 100%
+    );
+  backdrop-filter: saturate(180%) blur(30px);
+  -webkit-backdrop-filter: saturate(180%) blur(30px);
+  border: 0.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 22px;
+  padding: 1.25rem 1rem 1rem 1.25rem;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.8);
+  overflow: visible;
+}
+
+/* 彩色装饰层 - details 内部伪元素 */
+.toc details.toc-right .min-w-\[220px\]::after {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 30px;
+  background:
+    radial-gradient(ellipse at 25% 15%, rgba(120, 180, 255, 0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 55%, rgba(180, 130, 255, 0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 45% 85%, rgba(100, 220, 200, 0.18) 0%, transparent 45%);
+  filter: blur(6px);
+}
+
+.dark .toc details.toc-right .min-w-\[220px\]::after {
+  background:
+    radial-gradient(ellipse at 25% 15%, rgba(80, 140, 255, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 55%, rgba(160, 100, 240, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 45% 85%, rgba(60, 180, 170, 0.12) 0%, transparent 45%);
+}
+
+/* 噪点纹理 */
+.toc details.toc-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 顶部光泽线 */
+.toc details.toc-right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  border-radius: 22px 22px 0 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.toc details.toc-right > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 暗色模式 - 容器 */
+.dark .toc details.toc-right {
+  background: rgba(35, 35, 45, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 暗色模式 - 噪点 */
+.dark .toc details.toc-right::before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* 暗色模式 - 高光线 */
+.dark .toc details.toc-right::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* 去掉原有的虚线左边框 */
+.toc details .min-w-\[220px\] {
+  border: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* 添加「目录」标题 */
+.toc details.toc-right > .min-w-\[220px\]::before {
+  content: "目录";
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(100, 100, 100, 0.6);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .toc details.toc-right > .min-w-\[220px\]::before {
+  color: rgba(160, 165, 175, 0.7);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+/* 列表基础样式 */
+.toc nav ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+.toc nav > ul > li {
+  margin-bottom: 0.15rem;
+}
+
+/* 链接样式 */
+.toc nav a {
+  display: block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(60, 60, 60, 0.8);
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+}
+
+.dark .toc nav a {
+  color: rgba(190, 195, 205, 0.85);
+}
+
+.toc nav a:hover {
+  background: rgba(59, 130, 246, 0.08);
+  color: rgb(59, 130, 246);
+  border-left-color: rgb(59, 130, 246);
+}
+
+.dark .toc nav a:hover {
+  background: rgba(99, 160, 255, 0.12);
+  color: rgb(130, 180, 255);
+  border-left-color: rgb(100, 160, 255);
+}
+
+/* 当前段落高亮 */
+.toc nav a.toc-active {
+  background: rgba(59, 130, 246, 0.1);
+  color: rgb(37, 99, 235);
+  border-left-color: rgb(59, 130, 246);
+  font-weight: 500;
+}
+
+.dark .toc nav a.toc-active {
+  background: rgba(99, 160, 255, 0.15);
+  color: rgb(147, 197, 253);
+  border-left-color: rgb(100, 160, 255);
+  font-weight: 500;
+}
+
+/* 子级缩进 */
+.toc nav ul ul {
+  padding-left: 0.85rem !important;
+  margin-top: 0.1rem !important;
+}
+
+.toc nav ul ul a {
+  font-size: 0.78rem;
+  color: rgba(100, 100, 100, 0.7);
+}
+
+.dark .toc nav ul ul a {
+  color: rgba(140, 145, 155, 0.7);
 }

@@ -9,7 +9,7 @@ tags:
   - Photoshop
   - 调色
   - 后期
-image: https://pic.imgdb.cn/item/66d9ba9ed9c307b7e9f6a204.jpg
+image: https://assets.eqigxue.top/uploads/2024/09/photoshop-color-grading/cover.jpg
 ---
 
 最近在视频网站上刷到了一个关于照片后期调色的教学视频，这激发了我的兴趣，一张平淡无奇的照片，经过色彩处理竟能展现出如此丰富的表达。
@@ -26,7 +26,7 @@ image: https://pic.imgdb.cn/item/66d9ba9ed9c307b7e9f6a204.jpg
 
 这张照片通过前景的建筑、中景的河流和桥梁以及背景的晚霞和城市天际线，展示了城市夜景的壮丽和层次感。色彩的对比和丰富的细节使得整幅画面充满了视觉冲击力。
 
-![](https://pic.imgdb.cn/item/66d9ba9ed9c307b7e9f6a204.jpg)
+![](https://assets.eqigxue.top/uploads/2024/09/photoshop-color-grading/cover.jpg)
 
 **调整思路：**
 
@@ -42,13 +42,13 @@ image: https://pic.imgdb.cn/item/66d9ba9ed9c307b7e9f6a204.jpg
 
 **调整后：**
 
-![](https://pic.imgdb.cn/item/66d9ba9fd9c307b7e9f6a33a.jpg)
+![](https://assets.eqigxue.top/uploads/2024/09/photoshop-color-grading/osaka-after.jpg)
 
 - 照片二：拍摄于**东京塔前**
 
 通过对称的构图和清晰的层次感，突出了城市夜景和东京塔的标志性结构，营造出一种繁忙而又有序的都市氛围。
 
-![](https://pic.imgdb.cn/item/66d9bbd3d9c307b7e9f7db70.jpg)
+![](https://assets.eqigxue.top/uploads/2024/09/photoshop-color-grading/tokyo-tower.jpg)
 
 **调整思路：**
 
@@ -61,7 +61,7 @@ image: https://pic.imgdb.cn/item/66d9ba9ed9c307b7e9f6a204.jpg
 
 **调整后：**
 
-![](https://pic.imgdb.cn/item/66d9bba1d9c307b7e9f7a1e2.jpg)
+![](https://assets.eqigxue.top/uploads/2024/09/photoshop-color-grading/tokyo-tower-after.jpg)
 
 ## 对于调色的个人感受：
 

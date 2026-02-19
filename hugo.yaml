@@ -20,6 +20,9 @@ permalinks:
 
 # 参数配置
 params:
+  # 资源域名（Cloudflare R2）
+  assetsCDN: https://assets.eqigxue.top
+
   # 站点信息
   author:
     name: 强哥
@@ -131,7 +134,7 @@ markup:
       unsafe: true
   tableOfContents:
     endLevel: 4
-    ordered: true
+    ordered: false
     startLevel: 2
   highlight:
     noClasses: false
