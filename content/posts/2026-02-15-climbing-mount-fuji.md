@@ -14,8 +14,6 @@ featureimage: https://assets.eqigxue.top/uploads/2026/02/fuji-cover.jpg
 description: 从五合目出发，穿越云层，在3776米的山顶迎接御来光——这是一段关于富士山的攀登记录。
 ---
 
-![富士山日出](https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200)
-
 > *"一生に一度は富士山に登るべきだが、二度登るのは愚かだ。"*
 > *——一生中应当攀登一次富士山，但攀登两次则是愚蠢的。*
 

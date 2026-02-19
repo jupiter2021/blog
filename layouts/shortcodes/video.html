@@ -5,13 +5,29 @@
 {{- $autoplay := .Get "autoplay" | default "false" -}}
 {{- $loop := .Get "loop" | default "false" -}}
 {{- $muted := .Get "muted" | default "false" -}}
+{{- $poster := .Get "poster" | default "" -}}
 {{- $videoSrc := $src -}}
+{{- $posterSrc := $poster -}}
 {{- if and $cdn (not (hasPrefix $src "http")) -}}
   {{- $videoSrc = printf "%s%s" $cdn $src -}}
 {{- end -}}
+{{- if and $cdn $poster (not (hasPrefix $poster "http")) -}}
+  {{- $posterSrc = printf "%s%s" $cdn $poster -}}
+{{- end -}}
+{{- /* Auto-generate poster path: .mp4 -> -poster.jpg */ -}}
+{{- if not $poster -}}
+  {{- $posterPath := replace $src ".mp4" "-poster.jpg" -}}
+  {{- if $cdn -}}
+    {{- $posterSrc = printf "%s%s" $cdn $posterPath -}}
+  {{- else -}}
+    {{- $posterSrc = $posterPath -}}
+  {{- end -}}
+{{- end -}}
 
 <figure>
-  <video src="{{ $videoSrc }}" controls playsinline
+  <video data-src="{{ $videoSrc }}" controls playsinline
+    preload="none"
+    poster="{{ $posterSrc }}"
     {{ if eq $autoplay "true" }}autoplay{{ end }}
     {{ if eq $loop "true" }}loop{{ end }}
     {{ if eq $muted "true" }}muted{{ end }}

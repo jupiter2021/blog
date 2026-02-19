@@ -8,7 +8,7 @@
   {{- $imgSrc = printf "%s%s" $cdn $src -}}
 {{- end -}}
 <figure>
-  <img src="{{ $imgSrc }}" alt="{{ $alt }}" loading="lazy" style="max-width: {{ $width }}; border-radius: 8px;">
+  <img src="{{ $imgSrc }}" alt="{{ $alt }}" loading="lazy" decoding="async" fetchpriority="low" style="max-width: {{ $width }}; border-radius: 8px;">
   {{- if $caption }}
   <figcaption style="text-align: center; color: #888; font-size: 0.9em; margin-top: 0.5em;">{{ $caption }}</figcaption>
   {{- end }}

@@ -1,3 +1,11 @@
+{{/* Preconnect to CDN - critical for China mainland latency */}}
+{{ with site.Params.assetsCDN }}
+<link rel="preconnect" href="{{ . }}" crossorigin>
+<link rel="dns-prefetch" href="{{ . }}">
+{{ end }}
+
+{{/* LivePhotosKit - defer loading, not needed for first paint */}}
 {{ if .HasShortcode "livephoto" }}
-<script src="https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js"></script>
+<link rel="preconnect" href="https://cdn.apple-livephotoskit.com" crossorigin>
+<script defer src="https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js"></script>
 {{ end }}

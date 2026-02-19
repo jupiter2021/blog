@@ -55,4 +55,42 @@
 
   updateActive();
 })();
+
+// Lazy-load videos: set src from data-src when near viewport
+(function () {
+  const videos = document.querySelectorAll('video[data-src]');
+  if (!videos.length) return;
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        const video = entry.target;
+        video.src = video.getAttribute('data-src');
+        video.removeAttribute('data-src');
+        video.preload = 'metadata';
+        observer.unobserve(video);
+      }
+    });
+  }, { rootMargin: '200px 0px' }); // start loading 200px before entering viewport
+
+  videos.forEach(function (video) { observer.observe(video); });
+})();
+
+// Lazy-load Live Photos: only init when near viewport
+(function () {
+  const livePhotos = document.querySelectorAll('[data-live-photo]');
+  if (!livePhotos.length) return;
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.setAttribute('data-proactively-loads-video', 'true');
+        observer.unobserve(el);
+      }
+    });
+  }, { rootMargin: '300px 0px' });
+
+  livePhotos.forEach(function (el) { observer.observe(el); });
+})();
 </script>
