@@ -2,17 +2,52 @@
 
 基于 Hugo + Blowfish 主题，托管在 Cloudflare Pages 上的个人博客。
 
+## 🏗️ 网站架构
+
+```
+┌──────────────┐     ┌───────────────────┐     ┌──────────────────┐
+│   GitHub     │────▶│  Cloudflare Pages │────▶│   eqigxue.top    │
+│  (源码仓库)   │     │  (自动构建部署)     │     │   (博客站点)      │
+└──────────────┘     └───────────────────┘     └──────────────────┘
+                                                       │
+                                                       │ 引用媒体资源
+                                                       ▼
+                     ┌───────────────────┐     ┌──────────────────┐
+                     │  Cloudflare R2    │────▶│assets.eqigxue.top│
+                     │  (对象存储)        │     │  (CDN 自定义域名) │
+                     └───────────────────┘     └──────────────────┘
+```
+
+- **Hugo + Blowfish 主题**：静态站点生成，支持中文（CJK）、目录、标签、搜索
+- **Cloudflare Pages**：自动检测 GitHub 推送并构建部署，通常 1-2 分钟内完成
+- **Cloudflare R2**：对象存储，存放图片、视频、Live Photo 等媒体资源
+  - Bucket：`blog-assets`
+  - 自定义域名：`assets.eqigxue.top`
+  - CORS：通过 Cloudflare Transform Rule 添加 `Access-Control-Allow-Origin: *`
+  - 缓存策略：Edge TTL 1 年，Browser TTL 30 天
+
 ## 📁 目录结构
 
 ```
 hugo-site/
 ├── content/
-│   ├── posts/          # 博客文章
-│   └── about/          # 关于页面
-├── static/uploads/     # 本地图片资源
-├── config/_default/    # 主题配置
-├── themes/blowfish/    # Blowfish 主题
-└── hugo.yaml           # Hugo 主配置
+│   ├── posts/              # 博客文章
+│   ├── about/              # 关于页面
+│   └── page/               # 其他页面（归档、搜索、旅行等）
+├── assets/css/custom.css   # 自定义样式（TOC 毛玻璃、滚动追踪等）
+├── layouts/
+│   ├── _default/single.html  # 文章布局（TOC 在左侧）
+│   ├── shortcodes/         # 自定义 shortcode
+│   │   ├── img.html        # CDN 图片（lazy load）
+│   │   ├── video.html      # CDN 视频（lazy load + poster）
+│   │   └── livephoto.html  # Apple Live Photo
+│   └── partials/
+│       ├── extend-head-uncached.html  # preconnect + LivePhotosKit
+│       └── extend-footer.html         # 滚动追踪 + lazy load 脚本
+├── config/_default/        # 主题配置
+├── themes/blowfish/        # Blowfish 主题（git submodule）
+├── data/travel.yaml        # 旅行地图数据
+└── hugo.yaml               # Hugo 主配置
 ```
 
 ## ✍️ 写新文章
@@ -51,20 +86,53 @@ cd hugo-site
 hugo new posts/my-new-post.md
 ```
 
-## 🖼️ 添加图片
+## 🖼️ 媒体资源管理
 
-### 使用外链图床（推荐）
-直接在 Markdown 中引用图床链接：
-```markdown
-![描述](https://pic.imgdb.cn/item/xxx.jpg)
+所有媒体资源存放在 Cloudflare R2 对象存储中，通过自定义域名 `assets.eqigxue.top` 提供 CDN 加速。
+
+### 上传资源到 R2
+
+```bash
+# 安装 wrangler（如未安装）
+npm install -g wrangler
+
+# 上传图片
+npx wrangler r2 object put blog-assets/uploads/2026/02/article-name/image.jpg \
+  --file=./image.jpg --content-type="image/jpeg" --remote
+
+# 上传视频
+npx wrangler r2 object put blog-assets/uploads/2026/02/article-name/video.mp4 \
+  --file=./video.mp4 --content-type="video/mp4" --remote
+
+# 上传 Live Photo MOV
+npx wrangler r2 object put blog-assets/uploads/2026/02/article-name/photo.mov \
+  --file=./photo.mov --content-type="video/quicktime" --remote
 ```
 
-### 使用本地图片
-1. 将图片放入 `static/uploads/2026/` 目录
-2. 在 Markdown 中引用：
+> **注意：** 必须加 `--remote` 参数，否则会上传到本地模拟环境。
+
+### 在文章中引用
+
+使用自定义 shortcode，路径以 `/uploads/` 开头（会自动拼接 CDN 域名）：
+
 ```markdown
-![描述](/uploads/2026/image.jpg)
+<!-- 图片 -->
+{{</* img src="/uploads/2026/02/article-name/photo.jpg" alt="描述" caption="图片说明" */>}}
+
+<!-- 视频（自动生成 poster：同名文件 + -poster.jpg） -->
+{{</* video src="/uploads/2026/02/article-name/video.mp4" caption="视频说明" */>}}
+
+<!-- Live Photo -->
+{{</* livephoto photo="/uploads/2026/02/article-name/photo.jpg" video="/uploads/2026/02/article-name/photo.mov" caption="说明" */>}}
 ```
+
+### 性能优化
+
+- 图片：`loading="lazy" decoding="async" fetchpriority="low"`
+- 视频：`preload="none"` + IntersectionObserver 按需加载 + 自动 poster 封面
+- Live Photo：`proactively-loads-video="false"` 延迟加载 MOV
+- CDN：`preconnect` + `dns-prefetch` 预热连接
+- LivePhotosKit JS：`defer` 加载，不阻塞首屏
 
 ## 👀 本地预览
 
@@ -130,7 +198,9 @@ git push
 
 ## 🔗 相关链接
 
-- 博客地址: https://eqigxue.top
-- GitHub 仓库: https://github.com/jupiter2021/blog
-- Hugo 文档: https://gohugo.io/documentation/
-- Blowfish 主题文档: https://blowfish.page/docs/
+- 博客地址：https://eqigxue.top
+- 媒体 CDN：https://assets.eqigxue.top
+- GitHub 仓库：https://github.com/jupiter2021/blog
+- Hugo 文档：https://gohugo.io/documentation/
+- Blowfish 主题文档：https://blowfish.page/docs/
+- Apple LivePhotosKit：https://developer.apple.com/documentation/livephotoskitjs
