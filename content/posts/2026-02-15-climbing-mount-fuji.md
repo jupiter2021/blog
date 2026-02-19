@@ -14,6 +14,8 @@ featureimage: https://assets.eqigxue.top/uploads/2026/02/fuji-cover.jpg
 description: 从五合目出发，穿越云层，在3776米的山顶迎接御来光——这是一段关于富士山的攀登记录。
 ---
 
+{{< livephoto photo="/uploads/2026/02/climbing-mount-fuji/summit-sunrise-crowd.jpg" video="/uploads/2026/02/climbing-mount-fuji/summit-sunrise-crowd.mov" >}}
+
 > *"一生に一度は富士山に登るべきだが、二度登るのは愚かだ。"*
 > *——一生中应当攀登一次富士山，但攀登两次则是愚蠢的。*
 
@@ -31,19 +33,23 @@ description: 从五合目出发，穿越云层，在3776米的山顶迎接御来
 | **攀升** | 约 1471m |
 | **总距离** | 约 14km（上下山合计） |
 | **耗时** | 上山 6.5h / 下山 3.5h |
-| **季节** | 9月上旬（登山季末） |
+| **季节** | 2023年9月上旬（登山季末） |
 
 ---
 
+吉田路线是富士山最热门的登山线路，从五合目出发，经六合目、七合目、八合目一路攀升至山顶，沿途山小屋密集、补给充足，也是本文记录的攀登路线。
+
+{{< img src="/uploads/2026/02/climbing-mount-fuji/trail-map-yoshida.jpg" alt="富士山吉田线攀登示意图" caption="富士山吉田线攀登示意图" >}}
+
 ## 🚌 出发：吉田登山线五合目
 
-{{< img src="/uploads/2026/02/climbing-mount-fuji/trail-map.jpg" alt="吉田登山线路线图" caption="吉田路线是富士山最热门的登山线路，从五合目出发，经七合目、八合目一路攀升至山顶，沿途山小屋密集、补给充足" >}}
+{{< img src="/uploads/2026/02/climbing-mount-fuji/trail-map.jpg" alt="吉田登山线路线图" caption="实际的吉田线登山路线图" >}}
 
-从新宿直达五合目的高速巴士当天已全部售罄，我们不得已放弃了最便捷的交通方案。在新宿站向工作人员求助后，我们拿到了当天仍可行的公共交通方案。按照这张"救命的路线图"，我们通过多次换乘，最终成功搭上了当天最后一班从河口湖开往五合目的巴士。如果行程稍有延误，这一步就会直接宣告失败——这一点后来回想起来，仍然让人心有余悸。也正是从这里开始，这趟富士山攀登之旅带上了一点计划外的冒险感。
+从新宿直达五合目的巴士已全部售罄。在新宿站向工作人员求助后，我们拿到了一张替代路线图，辗转换乘，赶上了当天最后一班从河口湖开往五合目的巴士——任何一程晚几分钟，整趟行程就直接泡汤。好在日本的公共交通精准得近乎偏执，每一趟电车都严格按照时刻表准点运行，我们才能在完全陌生的线路上一路绿灯地换乘到底。也正是从这里开始，这趟攀登带上了一点计划外的冒险感。
 
-{{< img src="/uploads/2026/02/climbing-mount-fuji/bus-route.jpg" alt="交通路线图" caption="工作人员找出当季前往富士山五合目的路线图，并耐心的做出了标注" >}}
+{{< img src="/uploads/2026/02/climbing-mount-fuji/bus-route.jpg" alt="交通路线图" caption="工作人员找出当季前往富士山五合目的路线图，并耐心地做出了标注" >}}
 
-{{< livephoto photo="/uploads/2026/02/climbing-mount-fuji/fuji-express.jpg" video="/uploads/2026/02/climbing-mount-fuji/fuji-express.mov" caption="富士山特急 很有特色的列车涂装" width="100%" height="500px" >}}
+{{< livephoto photo="/uploads/2026/02/climbing-mount-fuji/fuji-express.jpg" video="/uploads/2026/02/climbing-mount-fuji/fuji-express.mov" caption="富士山特急——很有特色的列车涂装" width="100%" height="500px" >}}
 
 {{< video src="/uploads/2026/02/climbing-mount-fuji/countryside.mp4" caption="沿途路过的日本乡村风貌，途中可远眺富士山" width="100%" >}}
 
@@ -53,9 +59,7 @@ description: 从五合目出发，穿越云层，在3776米的山顶迎接御来
 
 {{< livephoto photo="/uploads/2026/02/climbing-mount-fuji/sunset.jpg" video="/uploads/2026/02/climbing-mount-fuji/sunset.mov" caption="五合目的夕阳余晖" width="100%" height="500px" >}}
 
-需要注意的是，五合目虽然设有商店，餐厅以及自动贩卖机，可以购买水和简单的补给，但品类有限，且价格明显高于市区，建议在出发前就准备好足够的饮用水、能量食品和夜爬所需用品。在这里我们进行了最后一次整理：确认头灯工作正常，组装好登山杖，把能量棒和零食分散放入口袋，方便途中取用。
-
-做好准备后，随着天色渐暗、气温下降，深吸了一口略显稀薄的空气，正式踏上了富士山的夜间弹丸登山之路。
+趁天还没黑透，我们在五合目做了最后一次整理：确认头灯工作正常，组装好登山杖，把能量棒和零食分散放入口袋，方便途中取用。随着天色渐暗、气温下降，深吸了一口略显稀薄的空气，正式踏上了富士山的夜间弹丸登山之路。
 
 {{< livephoto photo="/uploads/2026/02/climbing-mount-fuji/bullet-climbing.jpg" video="/uploads/2026/02/climbing-mount-fuji/bullet-climbing.mov" caption="「弹丸登山」——不在山小屋过夜、连夜从山脚直冲山顶的登山方式，体力消耗极大，但能赶上山顶日出" width="100%" height="500px" >}}
 
@@ -65,7 +69,7 @@ description: 从五合目出发，穿越云层，在3776米的山顶迎接御来
 
 {{< img src="/uploads/2026/02/climbing-mount-fuji/night-start.jpg" alt="开始攀登" caption="夜幕降临，头灯亮起，正式踏上登山道" >}}
 
-晚上7点44分，头灯亮起，正式出发。刚开始的一段路意外地轻松——平缓的林间小道，脚下是踩实的碎石，一直要到七合目花小屋附近才会遇到第一段需要攀爬的石阶。关掉头灯抬头望去，漫天繁星像是被人随手撒在黑色天鹅绒上，银河的轮廓隐约可辨🌌。夜间登山虽然看不见脚下的山体全貌，却意外地获得了一整片没有光污染的星空。
+晚上7点44分，头灯亮起，正式出发。刚开始的一段路意外地轻松——平缓的林间小道，脚下是踩实的碎石，一直要到七合目花小屋附近才会遇到第一段需要攀爬的石阶。关掉头灯抬头望去，满天繁星即使用手机直接拍摄也清晰可见，银河的轮廓隐约可辨🌌。夜间登山虽然看不见脚下的山体全貌，却意外地获得了一整片没有光污染的星空。
 
 {{< img src="/uploads/2026/02/climbing-mount-fuji/milky-way.jpg" alt="银河" caption="若隐若现的银河" >}}
 
@@ -168,9 +172,21 @@ description: 从五合目出发，穿越云层，在3776米的山顶迎接御来
 
 吉田线的下山道是无穷无尽的Z字弯道，全程火山灰和碎石，踩上去松松软软的，每一步都会往前滑一小截。路面本身比上山的乱石路好走，但毫无遮挡地暴晒了三个半小时，加上持续下坡对膝盖的冲击，走到后半段两条腿已经在打颤。时间比上山快了不少，煎熬程度却不相上下。
 
+{{< video src="/uploads/2026/02/climbing-mount-fuji/walking-in-clouds.mp4" caption="在云中行走" >}}
+
+越往下走，周围的景色开始变化——光秃秃的火山砂砾中逐渐冒出稀疏的高山植物，再往下灌木越来越密，最后重新走进了树线。从荒凉到葱绿的过渡异常分明，像是在快进观看植被的演替。
+
 {{< video src="/uploads/2026/02/climbing-mount-fuji/descent-vegetation.mp4" caption="伴随着海拔降低，植物的种类变得丰富起来" >}}
 
 {{< livephoto photo="/uploads/2026/02/climbing-mount-fuji/descent-complete.jpg" video="/uploads/2026/02/climbing-mount-fuji/descent-complete.mov" caption="完成打卡" >}}
+
+中午12点左右，我们终于回到了吉田线五合目。瘫坐在餐厅里吃上热饭的那一刻，才真正觉得这趟攀登结束了。回程顺利多了——快速巴士从五合目直达新宿，不用再像来时那样辗转换乘。
+
+下山这天已经是9月10日，富士山登山季的倒数第二天。再晚一天出发，山路和山小屋就要封闭了。想来我们的运气确实不错——售罄的巴士、末班车的换乘、登山季的尾声——每一步都踩在了最后的窗口上，但每一步都刚好赶上了。
+
+一生に一度、确实值得。
+
+{{< livephoto photo="/uploads/2026/02/climbing-mount-fuji/winter-closure.jpg" video="/uploads/2026/02/climbing-mount-fuji/winter-closure.mov" caption="工作人员正在张贴冬季封锁的标识，登山季即将落幕" >}}
 
 ---
 
@@ -186,7 +202,7 @@ description: 从五合目出发，穿越云层，在3776米的山顶迎接御来
 {{< /alert >}}
 
 {{< alert icon="circle-info" >}}
-**禁止弹丸登山：** 所有线路的登山口在每天 **14:00 至次日 3:00 关闭**，仅持有山小屋预约的登山者可以通行。想看日出的话，推荐在七合目或八合目的山小屋住一晚，凌晨出发冲顶。
+**禁止弹丸登山：** 所有线路的登山口在每天 **14:00 至次日 3:00 关闭**，仅持有山小屋预约的登山者可以通行。想看日出的话，推荐在七合目或八合目的山小屋住一晚，凌晨出发冲顶。（注：此规定为 2024 年起实施，本文记录的 2023 年攀登时尚未执行。）
 {{< /alert >}}
 
 {{< alert icon="circle-info" >}}
@@ -199,6 +215,10 @@ description: 从五合目出发，穿越云层，在3776米的山顶迎接御来
 
 {{< alert icon="circle-info" >}}
 **带硬币：** 山上所有厕所都收费（200～300 日元），全程没有免费厕所，也没有垃圾桶，所有垃圾需自行带下山。
+{{< /alert >}}
+
+{{< alert icon="circle-info" >}}
+**补给：** 五合目设有商店、餐厅和自动贩卖机，但品类有限且价格明显高于市区（一瓶水 500 日元）。建议在出发前准备好充足的饮用水、能量食品和夜爬所需用品。
 {{< /alert >}}
 
 ### 装备清单
