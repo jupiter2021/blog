@@ -82,18 +82,19 @@
   var players = document.querySelectorAll('.livephoto-player');
   if (!players.length) return;
 
-  // 懒加载视频：进入视口前 300px 时开始 preload metadata
+  // 懒加载视频：进入视口前 500px 时开始预加载整个视频
   var lazyObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         var video = entry.target.querySelector('video');
-        if (video && video.preload === 'none') {
-          video.preload = 'metadata';
+        if (video && video.preload !== 'auto') {
+          video.preload = 'auto';
+          video.load();
         }
         lazyObserver.unobserve(entry.target);
       }
     });
-  }, { rootMargin: '300px 0px' });
+  }, { rootMargin: '500px 0px' });
 
   players.forEach(function (player) {
     lazyObserver.observe(player);
@@ -104,8 +105,6 @@
 
     function startPlay() {
       if (isPlaying) return;
-      // 预加载整个视频以保证流畅播放
-      video.preload = 'auto';
       var p = video.play();
       if (p && p.catch) p.catch(function () {});
       player.classList.add('is-playing');
