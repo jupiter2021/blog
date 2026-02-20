@@ -360,8 +360,38 @@ body.zoom-overlay-active {
   border-radius: 8px;
 }
 
-/* ---- 暗色模式：确保评论区可见 ---- */
-/* 同时覆盖 Blowfish .dark class 和系统级 prefers-color-scheme */
+/* ---- 浅色模式：显式设置颜色，防止被系统暗色偏好污染 ---- */
+
+#twikoo-comments,
+.twikoo,
+.twikoo .tk-submit,
+.twikoo .tk-comments-container,
+.twikoo .tk-comment {
+  color: #1f2937;
+}
+
+.twikoo .tk-input .el-textarea__inner,
+.twikoo .tk-input .el-input__inner {
+  background: #fff;
+  color: #1f2937;
+}
+
+.twikoo .tk-nick,
+.twikoo .tk-time,
+.twikoo .tk-action-icon,
+.twikoo .tk-comments-title .tk-comments-count {
+  color: #6b7280;
+}
+
+.twikoo .tk-content {
+  color: #374151;
+}
+
+.twikoo .tk-content a {
+  color: #2563eb;
+}
+
+/* ---- 暗色模式：Blowfish .dark class 切换 ---- */
 
 .dark #twikoo-comments,
 .dark .twikoo,
@@ -396,41 +426,4 @@ body.zoom-overlay-active {
 .dark .twikoo .tk-submit .tk-row .tk-btn {
   background: #3b82f6 !important;
   color: #fff !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  #twikoo-comments,
-  .twikoo,
-  .twikoo .tk-submit,
-  .twikoo .tk-comments-container,
-  .twikoo .tk-comment {
-    color: #e5e7eb !important;
-  }
-
-  .twikoo .tk-input .el-textarea__inner,
-  .twikoo .tk-input .el-input__inner {
-    background: #1f2937 !important;
-    border-color: #374151 !important;
-    color: #e5e7eb !important;
-  }
-
-  .twikoo .tk-nick,
-  .twikoo .tk-time,
-  .twikoo .tk-action-icon,
-  .twikoo .tk-comments-title .tk-comments-count {
-    color: #9ca3af !important;
-  }
-
-  .twikoo .tk-content {
-    color: #d1d5db !important;
-  }
-
-  .twikoo .tk-content a {
-    color: #93c5fd !important;
-  }
-
-  .twikoo .tk-submit .tk-row .tk-btn {
-    background: #3b82f6 !important;
-    color: #fff !important;
-  }
 }
