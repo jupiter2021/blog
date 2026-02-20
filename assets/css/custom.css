@@ -359,3 +359,78 @@ body.zoom-overlay-active {
 .twikoo .tk-comments-container .tk-submit {
   border-radius: 8px;
 }
+
+/* ---- 暗色模式：确保评论区可见 ---- */
+/* 同时覆盖 Blowfish .dark class 和系统级 prefers-color-scheme */
+
+.dark #twikoo-comments,
+.dark .twikoo,
+.dark .twikoo .tk-submit,
+.dark .twikoo .tk-comments-container,
+.dark .twikoo .tk-comment {
+  color: #e5e7eb !important;
+}
+
+.dark .twikoo .tk-input .el-textarea__inner,
+.dark .twikoo .tk-input .el-input__inner {
+  background: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+.dark .twikoo .tk-nick,
+.dark .twikoo .tk-time,
+.dark .twikoo .tk-action-icon,
+.dark .twikoo .tk-comments-title .tk-comments-count {
+  color: #9ca3af !important;
+}
+
+.dark .twikoo .tk-content {
+  color: #d1d5db !important;
+}
+
+.dark .twikoo .tk-content a {
+  color: #93c5fd !important;
+}
+
+.dark .twikoo .tk-submit .tk-row .tk-btn {
+  background: #3b82f6 !important;
+  color: #fff !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  #twikoo-comments,
+  .twikoo,
+  .twikoo .tk-submit,
+  .twikoo .tk-comments-container,
+  .twikoo .tk-comment {
+    color: #e5e7eb !important;
+  }
+
+  .twikoo .tk-input .el-textarea__inner,
+  .twikoo .tk-input .el-input__inner {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+    color: #e5e7eb !important;
+  }
+
+  .twikoo .tk-nick,
+  .twikoo .tk-time,
+  .twikoo .tk-action-icon,
+  .twikoo .tk-comments-title .tk-comments-count {
+    color: #9ca3af !important;
+  }
+
+  .twikoo .tk-content {
+    color: #d1d5db !important;
+  }
+
+  .twikoo .tk-content a {
+    color: #93c5fd !important;
+  }
+
+  .twikoo .tk-submit .tk-row .tk-btn {
+    background: #3b82f6 !important;
+    color: #fff !important;
+  }
+}
