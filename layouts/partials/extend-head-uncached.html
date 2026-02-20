@@ -3,8 +3,3 @@
 <link rel="preconnect" href="{{ . }}" crossorigin>
 <link rel="dns-prefetch" href="{{ . }}">
 {{ end }}
-
-{{/* LivePhotosKit - self-hosted to avoid Apple CDN being blocked in China */}}
-{{ if .HasShortcode "livephoto" }}
-<script defer src="/js/livephotoskit.js"></script>
-{{ end }}

@@ -10,32 +10,13 @@
 {{- end -}}
 {{- $uid := delimit (slice "lp" (md5 $photoSrc)) "-" -}}
 
-<figure>
-  <div id="{{ $uid }}"
-       data-live-photo
-       data-photo-src="{{ $photoSrc }}"
-       data-video-src="{{ $videoSrc }}"
-       data-proactively-loads-video="false"
-       style="width: 100%; height: 300px;">
+<figure class="livephoto-figure">
+  <div id="{{ $uid }}" class="livephoto-player" data-live-photo data-video-src="{{ $videoSrc }}">
+    <img class="livephoto-img" src="{{ $photoSrc }}" alt="{{ $caption }}" loading="lazy" draggable="false">
+    <video class="livephoto-video" src="{{ $videoSrc }}" preload="none" loop muted playsinline webkit-playsinline x5-playsinline></video>
+    <span class="livephoto-badge">LIVE</span>
   </div>
   {{- if $caption }}
   <figcaption style="text-align: center; color: #888; font-size: 0.9em; margin-top: 0.5em;">{{ $caption }}</figcaption>
   {{- end }}
 </figure>
-<script>
-(function(){
-  var el = document.getElementById("{{ $uid }}");
-  var img = new Image();
-  img.onload = function(){
-    var ratio = img.naturalHeight / img.naturalWidth;
-    el.style.height = Math.round(el.offsetWidth * ratio) + "px";
-  };
-  img.src = "{{ $photoSrc }}";
-  window.addEventListener("resize", function(){
-    if(img.naturalWidth){
-      var ratio = img.naturalHeight / img.naturalWidth;
-      el.style.height = Math.round(el.offsetWidth * ratio) + "px";
-    }
-  });
-})();
-</script>

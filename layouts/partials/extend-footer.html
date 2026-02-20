@@ -76,22 +76,66 @@
   videos.forEach(function (video) { observer.observe(video); });
 })();
 
-// Lazy-load Live Photos: only init when near viewport
+// Live Photo 播放器：长按/触摸播放视频，松开恢复图片
+// 纯 HTML5 实现，兼容微信浏览器、iOS Safari 等所有环境
 (function () {
-  const livePhotos = document.querySelectorAll('[data-live-photo]');
-  if (!livePhotos.length) return;
+  var players = document.querySelectorAll('.livephoto-player');
+  if (!players.length) return;
 
-  const observer = new IntersectionObserver(function (entries) {
+  // 懒加载视频：进入视口前 300px 时开始 preload metadata
+  var lazyObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        const el = entry.target;
-        el.setAttribute('data-proactively-loads-video', 'true');
-        observer.unobserve(el);
+        var video = entry.target.querySelector('video');
+        if (video && video.preload === 'none') {
+          video.preload = 'metadata';
+        }
+        lazyObserver.unobserve(entry.target);
       }
     });
   }, { rootMargin: '300px 0px' });
 
-  livePhotos.forEach(function (el) { observer.observe(el); });
+  players.forEach(function (player) {
+    lazyObserver.observe(player);
+
+    var video = player.querySelector('video');
+    var holdTimer = null;
+    var isPlaying = false;
+
+    function startPlay() {
+      if (isPlaying) return;
+      // 预加载整个视频以保证流畅播放
+      video.preload = 'auto';
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});
+      player.classList.add('is-playing');
+      isPlaying = true;
+    }
+
+    function stopPlay() {
+      if (!isPlaying) return;
+      player.classList.remove('is-playing');
+      video.pause();
+      video.currentTime = 0;
+      isPlaying = false;
+      if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
+    }
+
+    // 桌面端：hover 即播放
+    player.addEventListener('mouseenter', function () {
+      holdTimer = setTimeout(startPlay, 100);
+    });
+    player.addEventListener('mouseleave', function () {
+      stopPlay();
+    });
+
+    // 移动端：长按播放，松开停止
+    player.addEventListener('touchstart', function (e) {
+      holdTimer = setTimeout(startPlay, 180);
+    }, { passive: true });
+    player.addEventListener('touchend', stopPlay);
+    player.addEventListener('touchcancel', stopPlay);
+  });
 })();
 
 // medium-zoom 打开时锁定页面滚动，防止移动端缩放/滑动手势误触关闭
