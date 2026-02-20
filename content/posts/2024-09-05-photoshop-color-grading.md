@@ -10,6 +10,7 @@ tags:
   - 调色
   - 后期
 image: https://assets.eqigxue.top/uploads/2024/09/photoshop-color-grading/cover.jpg
+featureimage: https://assets.eqigxue.top/uploads/2024/09/photoshop-color-grading/cover.jpg
 ---
 
 最近在视频网站上刷到了一个关于照片后期调色的教学视频，这激发了我的兴趣，一张平淡无奇的照片，经过色彩处理竟能展现出如此丰富的表达。

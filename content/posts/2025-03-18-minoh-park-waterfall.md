@@ -10,6 +10,7 @@ tags:
   - 大阪
   - 观光
 image: https://assets.eqigxue.top/uploads/2025/03/minoh-park-waterfall/cover.jpg
+featureimage: https://assets.eqigxue.top/uploads/2025/03/minoh-park-waterfall/cover.jpg
 ---
 
 ![](https://assets.eqigxue.top/uploads/2025/03/minoh-park-waterfall/cover.jpg)

@@ -10,6 +10,7 @@ tags:
   - Citywalk
   - 观光
 image: https://assets.eqigxue.top/uploads/2024/05/chongqing-citywalk/cover.jpg
+featureimage: https://assets.eqigxue.top/uploads/2024/05/chongqing-citywalk/cover.jpg
 ---
 
 ![](https://assets.eqigxue.top/uploads/2024/05/chongqing-citywalk/cover.jpg)

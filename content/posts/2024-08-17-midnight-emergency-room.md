@@ -9,6 +9,7 @@ tags:
   - 生活
   - 思考
 image: https://assets.eqigxue.top/uploads/2024/08/midnight-emergency-room/cover.jpg
+featureimage: https://assets.eqigxue.top/uploads/2024/08/midnight-emergency-room/cover.jpg
 ---
 
 ![](https://assets.eqigxue.top/uploads/2024/08/midnight-emergency-room/cover.jpg)
