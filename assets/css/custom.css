@@ -283,3 +283,44 @@ body.zoom-overlay-active {
 .livephoto-player.is-playing .livephoto-badge {
   opacity: 0;
 }
+
+/* ===== Twikoo 评论区适配 ===== */
+#twikoo-comments {
+  margin-top: 1rem;
+}
+
+/* 输入框圆角 + 边框 */
+.twikoo .tk-input .el-textarea__inner,
+.twikoo .tk-input .el-input__inner {
+  border-radius: 8px !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark .twikoo .tk-input .el-textarea__inner,
+.dark .twikoo .tk-input .el-input__inner {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #e5e7eb !important;
+}
+
+/* 评论卡片 */
+.twikoo .tk-comments .tk-comment {
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 暗色模式文字颜色 */
+.dark .twikoo {
+  color: #d1d5db;
+}
+
+.dark .twikoo .tk-nick,
+.dark .twikoo .tk-time {
+  color: #9ca3af !important;
+}
+
+/* 提交按钮 */
+.twikoo .tk-submit .tk-row .tk-btn {
+  border-radius: 8px !important;
+}

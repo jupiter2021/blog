@@ -37,6 +37,7 @@ hotlinkFeatureImage = true
   showTableOfContents = true
   showTaxonomies = true
   showWordCount = true
+  showComments = true
 
 [list]
   showHero = true
