@@ -4,8 +4,7 @@
 <link rel="dns-prefetch" href="{{ . }}">
 {{ end }}
 
-{{/* LivePhotosKit - defer loading, not needed for first paint */}}
+{{/* LivePhotosKit - self-hosted to avoid Apple CDN being blocked in China */}}
 {{ if .HasShortcode "livephoto" }}
-<link rel="preconnect" href="https://cdn.apple-livephotoskit.com" crossorigin>
-<script defer src="https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js"></script>
+<script defer src="/js/livephotoskit.js"></script>
 {{ end }}

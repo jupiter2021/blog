@@ -94,17 +94,41 @@
   livePhotos.forEach(function (el) { observer.observe(el); });
 })();
 
-// medium-zoom 打开时锁定页面滚动，防止移动端缩放手势误触关闭
+// medium-zoom 打开时锁定页面滚动，防止移动端缩放/滑动手势误触关闭
 (function () {
-  const body = document.body;
-  const observer = new MutationObserver(function () {
-    const overlay = document.querySelector('.medium-zoom-overlay');
-    if (overlay) {
+  var savedScrollY = 0;
+  var body = document.body;
+
+  function preventTouch(e) { e.preventDefault(); }
+
+  var observer = new MutationObserver(function () {
+    var overlay = document.querySelector('.medium-zoom-overlay');
+    var isActive = body.classList.contains('zoom-overlay-active');
+
+    if (overlay && !isActive) {
+      // 保存滚动位置，用 position:fixed 冻结页面（iOS Safari 最可靠的方式）
+      savedScrollY = window.scrollY;
       body.classList.add('zoom-overlay-active');
-    } else {
+      body.style.position = 'fixed';
+      body.style.top = '-' + savedScrollY + 'px';
+      body.style.width = '100%';
+
+      // 拦截 overlay 和图片上的 touchmove，防止产生 scroll 事件
+      overlay.addEventListener('touchmove', preventTouch, { passive: false });
+      var zoomedImg = document.querySelector('.medium-zoom-image--opened');
+      if (zoomedImg) {
+        zoomedImg.addEventListener('touchmove', preventTouch, { passive: false });
+      }
+    } else if (!overlay && isActive) {
+      // 恢复滚动位置
       body.classList.remove('zoom-overlay-active');
+      body.style.position = '';
+      body.style.top = '';
+      body.style.width = '';
+      window.scrollTo(0, savedScrollY);
     }
   });
+
   observer.observe(body, { childList: true });
 })();
 </script>

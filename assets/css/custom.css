@@ -9,6 +9,7 @@ body {
 body.zoom-overlay-active {
   overflow: hidden;
   touch-action: none;
+  overscroll-behavior: none;
 }
 
 /* 导航栏站点标题字体调大 */
