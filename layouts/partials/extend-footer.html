@@ -120,7 +120,7 @@
       if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
     }
 
-    // 桌面端：hover 即播放
+    // 桌面端：hover 播放，移出停止
     player.addEventListener('mouseenter', function () {
       holdTimer = setTimeout(startPlay, 100);
     });
