@@ -7,19 +7,4 @@
     el: '#twikoo-comments',
     lang: 'zh-CN',
   });
-
-  // 监听 Blowfish 主题暗色模式切换，同步更新 Twikoo 配色
-  (function () {
-    var observer = new MutationObserver(function () {
-      var isDark = document.documentElement.classList.contains('dark');
-      var el = document.getElementById('twikoo-comments');
-      if (el) {
-        el.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      }
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-  })();
 </script>
