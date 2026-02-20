@@ -93,4 +93,18 @@
 
   livePhotos.forEach(function (el) { observer.observe(el); });
 })();
+
+// medium-zoom 打开时锁定页面滚动，防止移动端缩放手势误触关闭
+(function () {
+  const body = document.body;
+  const observer = new MutationObserver(function () {
+    const overlay = document.querySelector('.medium-zoom-overlay');
+    if (overlay) {
+      body.classList.add('zoom-overlay-active');
+    } else {
+      body.classList.remove('zoom-overlay-active');
+    }
+  });
+  observer.observe(body, { childList: true });
+})();
 </script>

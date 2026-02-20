@@ -1,3 +1,16 @@
+/* ===== 移动端触控优化 ===== */
+
+/* 防止下拉刷新 (pull-to-refresh) */
+body {
+  overscroll-behavior-y: contain;
+}
+
+/* medium-zoom 打开时锁定页面滚动，防止缩放手势误触关闭 */
+body.zoom-overlay-active {
+  overflow: hidden;
+  touch-action: none;
+}
+
 /* 导航栏站点标题字体调大 */
 .main-menu > a {
   font-size: 1.25rem !important;
