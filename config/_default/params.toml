@@ -40,7 +40,6 @@ hotlinkFeatureImage = true
   showComments = true
 
 [list]
-  showHero = true
-  heroStyle = "background"
-  showCards = true
+  showHero = false
+  showCards = false
   groupByYear = true

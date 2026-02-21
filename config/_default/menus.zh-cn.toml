@@ -17,3 +17,8 @@
   name = "关于"
   pageRef = "/about/"
   weight = 4
+
+[[main]]
+  name = "日志"
+  pageRef = "/page/changelog/"
+  weight = 5

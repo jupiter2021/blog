@@ -97,24 +97,47 @@ hugo new posts/my-new-post.md
 
 ### 上传资源到 R2
 
-```bash
-# 安装 wrangler（如未安装）
-npm install -g wrangler
+~~**方法一：wrangler CLI（已知存在问题）**~~
 
-# 上传图片
+```bash
+# ⚠️ wrangler r2 object put 存在静默失败的 bug：
+# wrangler 的 OAuth scope 列表不包含 R2 权限，导致 put 命令
+# 显示 "Upload complete" 但实际未写入远程 bucket。
+# 推荐使用下方的 Cloudflare API 方式上传。
+
 npx wrangler r2 object put blog-assets/uploads/2026/02/article-name/image.jpg \
   --file=./image.jpg --content-type="image/jpeg" --remote
-
-# 上传视频
-npx wrangler r2 object put blog-assets/uploads/2026/02/article-name/video.mp4 \
-  --file=./video.mp4 --content-type="video/mp4" --remote
-
-# 上传 Live Photo MOV
-npx wrangler r2 object put blog-assets/uploads/2026/02/article-name/photo.mov \
-  --file=./photo.mov --content-type="video/quicktime" --remote
 ```
 
-> **注意：** 必须加 `--remote` 参数，否则会上传到本地模拟环境。
+**方法二：Cloudflare REST API（推荐）**
+
+通过 Cloudflare API 直接上传，使用 wrangler 的 OAuth Token 认证：
+
+```bash
+# 读取 wrangler OAuth token
+TOKEN=$(grep oauth_token ~/.wrangler/config/default.toml | cut -d'"' -f2)
+ACCOUNT_ID="60e26306cde26c833ff28cebe90551b4"
+
+# 上传图片（key 中的 / 需要 URL 编码为 %2F）
+curl -s -X PUT \
+  "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/r2/buckets/blog-assets/objects/uploads%2F2026%2F02%2Farticle-name%2Fimage.jpg" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: image/jpeg" \
+  --data-binary "@./image.jpg"
+
+# 上传视频
+curl -s -X PUT \
+  "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/r2/buckets/blog-assets/objects/uploads%2F2026%2F02%2Farticle-name%2Fvideo.mp4" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: video/mp4" \
+  --data-binary "@./video.mp4"
+```
+
+> **注意：**
+> - wrangler OAuth Token 有效期约 24 小时，过期后需 `npx wrangler login` 重新登录
+> - R2 object key 中的 `/` 必须编码为 `%2F`
+> - API 返回 `{"success":true}` 且 `result.etag` 与本地文件 MD5 一致即为上传成功
+> - 上传后需刷新 Azure Front Door 缓存：`az afd endpoint purge --content-paths "/uploads/2026/02/article-name/*" --profile-name blog-assets-afd --endpoint-name blog-assets --resource-group RG-For-Website --no-wait`
 
 ### 在文章中引用
 
@@ -227,6 +250,54 @@ partials/extend-footer.html    → 交互逻辑（hover/longpress/预加载）
 通过 CSS class `.is-playing` 切换状态：
 - 添加 `is-playing`：视频 `opacity: 0 → 1`（`transition: 0.2s ease`），徽章隐藏
 - 移除 `is-playing`：视频淡出，`video.pause()` + `video.currentTime = 0` 重置
+
+## 🌈 HDR Gain Map 照片支持
+
+iPhone 拍摄的 HEIC 照片内嵌 HDR Gain Map，转换为 UltraHDR JPEG 后，浏览器可在 HDR 屏幕上自动渲染 HDR 效果，无需任何 JS 代码，完全向后兼容。
+
+### 原理
+
+```
+iPhone HEIC (含 Gain Map)
+         ↓  heif-convert --with-aux
+  SDR JPEG + Gain Map JPEG（两个独立文件）
+         ↓  ultrahdr_app -m 0 (encoding scenario 4)
+  UltraHDR JPEG（单文件，MPF 多图结构，ISO/TS 21496-1）
+         ↓  上传到 R2
+  浏览器自动渲染：HDR 屏幕看到高光细节，SDR 屏幕看到普通图片
+```
+
+- UltraHDR JPEG 内部通过 MPF（Multi-Picture Format）嵌入了 Gain Map 辅助图像
+- Chrome 116+ / Safari 17.1+ 原生支持，自动在 HDR 显示器上渲染
+- 非 HDR 屏幕 / 旧浏览器只看到 SDR 基础图片，完全兼容
+
+### 转换工具
+
+依赖安装：
+```bash
+brew install libheif libultrahdr exiftool
+```
+
+使用 `convert_heic.sh` 脚本（位于 `blog/` 根目录）：
+```bash
+./convert_heic.sh photo.HEIC              # 单张转换
+./convert_heic.sh *.HEIC                  # 批量转换
+./convert_heic.sh -q 85 photo.HEIC out.jpg # 指定质量和输出名
+```
+
+脚本会自动检测 HEIC 是否含 Gain Map：
+- **含 Gain Map**：走 `heif-convert` → `ultrahdr_app` 流程，输出 UltraHDR JPEG
+- **不含 Gain Map**：回退到 `sips` 快速转换
+
+### 注意事项
+
+| 工具 | Gain Map 保留 | 说明 |
+|------|:---:|------|
+| `sips` | ❌ | macOS 自带，但丢失 Gain Map 辅助图像 |
+| Apple 照片导出 JPEG | ❌ | 导出时 Gain Map 被剥离 |
+| `heif-convert` + `ultrahdr_app` | ✅ | 提取 + 合并，完整保留 |
+
+> ⚠️ 现有已上传到 R2 的照片（之前从 HEIC 转 JPG 的）已丢失 Gain Map，需要从原始 HEIC 重新转换才能支持 HDR。
 
 ## 🔒 medium-zoom 滚动锁定
 

@@ -427,3 +427,37 @@ body.zoom-overlay-active {
   background: #3b82f6 !important;
   color: #fff !important;
 }
+
+/* ===== 文章列表缩略图缩小 ===== */
+.thumbnail {
+  width: 120px;
+  min-height: 80px;
+}
+
+@media (max-width: 768px) {
+  .thumbnail {
+    width: 100%;
+    min-height: 120px;
+  }
+}
+
+/* ===== 文章列表双列布局 ===== */
+section.space-y-10 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+}
+
+section.space-y-10 > h2 {
+  grid-column: 1 / -1;
+}
+
+section.space-y-10 > nav {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  section.space-y-10 {
+    grid-template-columns: 1fr;
+  }
+}
