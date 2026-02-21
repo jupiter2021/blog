@@ -1,6 +1,9 @@
 ---
 title: "更新日志"
 slug: "changelog"
+showDate: false
+showReadingTime: false
+showWordCount: false
 ---
 
 记录本站的功能更新与技术改进。
