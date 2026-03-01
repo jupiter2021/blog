@@ -23,7 +23,7 @@ showWordCount: false
 
 **📡 RSS 订阅优化**
 
-自定义 RSS 模板，支持全文输出和封面图（`<media:content>`）。在首页作者卡片添加 RSS 订阅图标，方便读者通过 RSS 阅读器订阅博客。
+自定义 RSS 模板，添加 RSS 订阅图标，方便读者通过 RSS 阅读器订阅博客。
 
 ---
 
