@@ -18,4 +18,5 @@ title = "Korben's Blog"
   bio = "热爱音乐、阅读和运动。信奉经验主义和实用主义。"
   links = [
     { github = "https://github.com/" },
+    { rss = "/index.xml" },
   ]
